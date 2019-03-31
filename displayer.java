@@ -1,6 +1,7 @@
 import java.util.*;
 import static java.lang.System.*;
 //edit second while loop to make it second player
+//MAKE SKIP TURN OPTION
 public class displayer{
     //make input for how many players
     //finish lower section code, two player code, and yahtzee sensors
@@ -112,6 +113,7 @@ public class displayer{
             if (viewInstructions.equals("yes")) {
                 instructions instructions = new instructions();
                 instructions.readInstructions();
+                enterToContinue();
             }
             //change player names:
             for (int i = 0; i < 13; i++) {
@@ -159,7 +161,7 @@ public class displayer{
                     }*/
                     }
                     if (rollTimes != 3) {
-                        out.print("Type in what you want to score. If you want to roll again, type 'again'. Type 'options' to see scoring options: ");
+                        out.print("Type in what you want to score. If you want to roll again, type 'again'. Type 'options' to see scoring options. Type 'skip' to skip turn, only use if you already scored everything: ");
                     } else {
                         out.print("Type in what you want to score. Type 'options' to see scoring options: ");
                         //code options list
@@ -468,7 +470,11 @@ public class displayer{
                         rollFiveAgain = false;
                         rollTimes--;
                         askAgain = 0;
-                    } else {
+                    }
+                    else if(scoreChoice.equals("skip")) {
+                        askAgain = 1;
+                    }
+                    else {
                         System.out.println("That is not a valid option!");
                         rollOneAgain = false;
                         rollTwoAgain = false;
@@ -887,6 +893,8 @@ public class displayer{
     }
     public static void rollAgain() {
         String rollAgain;
+        areYouSure = 0;
+        askAreYouSure = 0;
         while (areYouSure == 0) {
             askAreYouSure = 0;
             out.print("Roll die one again? type yes or no. If you don't type yes or no, it will roll again: ");
